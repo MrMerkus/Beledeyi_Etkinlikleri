@@ -3,300 +3,1281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Küçükçekmece Gençlik Merkezi</title>
+    <title>Küçükçekmece Belediyesi | Gençlik Merkezi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a4b84; /* Kurumsal Lacivert */
-            --secondary-color: #20c997; /* Turkuaz/Yeşil Vurgu */
-            --bg-light: #f8f9fa;
+            --navy: #0d2d5e;
+            --navy-mid: #163d7a;
+            --navy-light: #1e4f9c;
+            --gold: #c8a84b;
+            --gold-light: #e0c06a;
+            --red: #c0392b;
+            --white: #ffffff;
+            --off-white: #f4f6f9;
+            --light-gray: #e8ecf1;
+            --text-dark: #1a2332;
+            --text-mid: #4a5568;
         }
+
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-light);
-            padding-top: 76px; /* Navbar yüksekliği kadar boşluk */
+            font-family: 'Lato', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
-        .navbar {
-            background-color: var(--primary-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+        /* ============ TOP BAR ============ */
+        .top-bar {
+            background: var(--navy);
+            color: rgba(255,255,255,0.75);
+            font-size: 0.78rem;
+            padding: 6px 0;
+            font-family: 'Lato', sans-serif;
         }
-        .navbar-brand {
-            font-weight: 700;
-            letter-spacing: 1px;
+        .top-bar a { color: rgba(255,255,255,0.75); text-decoration: none; }
+        .top-bar a:hover { color: var(--gold-light); }
+        .top-bar .separator { margin: 0 10px; opacity: 0.4; }
+
+        /* ============ HEADER ============ */
+        .site-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.35);
         }
-        .nav-link {
-            cursor: pointer;
-            font-weight: 500;
+        .logo-area { display: flex; align-items: center; gap: 16px; cursor: pointer; }
+        .logo-emblem {
+            width: 62px;
+            height: 62px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            color: var(--navy);
+            font-weight: 900;
+            box-shadow: 0 0 0 3px rgba(200,168,75,0.3);
+            flex-shrink: 0;
         }
-        .nav-link.active {
-            color: var(--secondary-color) !important;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-        /* Sayfa Bölümleri */
-        .page-section {
-            display: none; /* Varsayılan olarak tüm bölümler gizli */
-            min-height: calc(100vh - 150px);
-            padding: 40px 0;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        .page-section.active-section {
-            display: block; /* Sadece aktif bölüm görünür */
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Özel Tasarım Elementleri */
-        .section-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 30px;
+        .logo-text .city-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--white);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            border-bottom: 3px solid var(--secondary-color);
-            display: inline-block;
-            padding-bottom: 10px;
+            line-height: 1.1;
         }
-        .principle-item {
-            background: white;
-            padding: 15px 20px;
-            margin-bottom: 12px;
-            border-left: 5px solid var(--secondary-color);
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        .logo-text .dept-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.72rem;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .header-search input {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 25px;
+            padding: 6px 16px;
+            font-size: 0.82rem;
+            width: 200px;
+        }
+        .header-search input::placeholder { color: rgba(255,255,255,0.5); }
+        .header-search input:focus { outline: none; background: rgba(255,255,255,0.18); border-color: var(--gold); }
+
+        /* ============ NAV ============ */
+        .main-nav {
+            background: var(--red);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .main-nav .nav-container {
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .main-nav .nav-container::-webkit-scrollbar { display: none; }
+        .nav-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.88) !important;
+            padding: 13px 18px;
+            white-space: nowrap;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover { color: white !important; background: rgba(0,0,0,0.15); }
+        .nav-btn.active { color: white !important; border-bottom-color: var(--gold); background: rgba(0,0,0,0.2); }
+        .hamburger-btn {
+            display: none;
+            background: rgba(0,0,0,0.2);
+            border: none;
+            color: white;
+            padding: 10px 14px;
             font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        /* ============ PAGES ============ */
+        .page-section { display: none; }
+        .page-section.active-section { display: block; animation: fadeInUp 0.4s ease; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            background: linear-gradient(160deg, var(--navy) 0%, #1a3a6b 50%, #0a2148 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0 70px;
+            min-height: 520px;
             display: flex;
             align-items: center;
         }
-        .principle-item i {
-            color: var(--primary-color);
-            margin-right: 15px;
-            font-size: 1.3rem;
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 80% 30%, rgba(200,168,75,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 10% 80%, rgba(192,57,43,0.1) 0%, transparent 50%);
         }
-        .card {
+        .hero-grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(200,168,75,0.15);
+            border: 1px solid rgba(200,168,75,0.4);
+            color: var(--gold-light);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 22px;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--gold); }
+        .hero p.lead {
+            color: rgba(255,255,255,0.78);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 32px;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--navy);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.5px;
+            padding: 14px 32px;
+            border-radius: 4px;
             border: none;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-            height: 100%;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
         }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .card-header-custom {
-            background-color: var(--primary-color);
+        .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,168,75,0.4); }
+        .hero-cta-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
             color: white;
-            font-weight: bold;
-            border-radius: 12px 12px 0 0 !important;
-            padding: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            padding: 13px 28px;
+            border-radius: 4px;
+            border: 2px solid rgba(255,255,255,0.35);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            margin-left: 12px;
         }
-        .quote-box {
-            background-color: #e9ecef;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px;
-            font-style: italic;
-            margin-top: 20px;
+        .hero-cta-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: flex-end;
         }
-        .museum-list {
-            column-count: 2;
-            column-gap: 40px;
-            list-style-type: none;
+        .hero-stat-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 18px 24px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            min-width: 160px;
+        }
+        .hero-stat-card .num {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .hero-stat-card .lbl {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.65);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============ QUICK LINKS ============ */
+        .quick-links {
+            background: var(--white);
+            border-bottom: 1px solid var(--light-gray);
             padding: 0;
         }
-        .museum-list li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #ccc;
+        .quick-link-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 24px 10px;
+            cursor: pointer;
+            border-right: 1px solid var(--light-gray);
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--text-dark);
         }
-        @media (max-width: 768px) {
-            .museum-list { column-count: 1; }
+        .quick-link-item:last-child { border-right: none; }
+        .quick-link-item:hover { background: var(--off-white); color: var(--navy); }
+        .quick-link-item:hover .ql-icon { background: var(--navy); color: white; }
+        .ql-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--navy);
+            transition: all 0.2s;
+        }
+        .ql-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        /* ============ SECTION CONTAINER ============ */
+        .section-wrapper {
+            padding: 60px 0 70px;
+        }
+        .section-wrapper.alt { background: var(--white); }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+        .section-tag::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--red);
+        }
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--navy);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .section-subtitle {
+            color: var(--text-mid);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* ============ CARDS ============ */
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.07);
+            border: 1px solid var(--light-gray);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        .feature-card:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(0,0,0,0.12); }
+        .feature-card-top {
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            padding: 28px 24px;
+            color: white;
+        }
+        .feature-card-top.red { background: linear-gradient(135deg, var(--red), #e74c3c); }
+        .feature-card-top.gold { background: linear-gradient(135deg, #b8860b, var(--gold)); }
+        .feature-card-top.teal { background: linear-gradient(135deg, #0d7377, #14a085); }
+        .feature-card-top i { font-size: 2.5rem; opacity: 0.9; }
+        .feature-card-top h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+        .feature-card-body { padding: 22px 24px; }
+        .feature-card-body p { color: var(--text-mid); font-size: 0.92rem; line-height: 1.7; margin: 0; }
+
+        /* ============ PRINCIPLE CARDS ============ */
+        .principle-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-left: 4px solid var(--navy);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            transition: all 0.2s;
+        }
+        .principle-card:hover { border-left-color: var(--gold); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .principle-card .p-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .principle-card .p-text {
+            font-size: 0.95rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+        }
+
+        /* ============ STATS BAR ============ */
+        .stats-bar {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            padding: 50px 0;
+        }
+        .stat-item { text-align: center; }
+        .stat-item .stat-num {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.8rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .stat-item .stat-lbl {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.65);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 8px;
+        }
+        .stat-divider {
+            width: 1px;
+            height: 60px;
+            background: rgba(255,255,255,0.15);
+            margin: 0 auto;
+        }
+
+        /* ============ COMPETITIONS ============ */
+        .competition-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+        .competition-item:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); border-color: var(--gold); }
+        .competition-item .comp-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .competition-item .comp-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--navy);
+        }
+        .competition-item .comp-desc {
+            font-size: 0.82rem;
+            color: var(--text-mid);
+            margin-top: 2px;
+        }
+        .comp-badge {
+            margin-left: auto;
+            background: var(--light-gray);
+            color: var(--navy);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .comp-badge.active { background: #d4edda; color: #155724; }
+
+        /* ============ MUSEUMS GRID ============ */
+        .museum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .museum-item {
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.2s;
+        }
+        .museum-item:hover { background: var(--navy); color: white; border-color: var(--navy); }
+        .museum-item:hover .mi-dot { background: var(--gold); }
+        .mi-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--red);
+            flex-shrink: 0;
+        }
+
+        /* ============ SERVICES ============ */
+        .service-card {
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            transition: all 0.3s;
+        }
+        .service-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-4px); }
+        .service-card-accent {
+            height: 5px;
+        }
+        .service-card-accent.navy { background: var(--navy); }
+        .service-card-accent.red { background: var(--red); }
+        .service-card-accent.gold { background: var(--gold); }
+        .service-card-accent.teal { background: #0d7377; }
+        .service-card-inner { padding: 28px; }
+        .service-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+        }
+        .service-card-icon.navy { background: rgba(13,45,94,0.08); color: var(--navy); }
+        .service-card-icon.red { background: rgba(192,57,43,0.08); color: var(--red); }
+        .service-card-icon.gold { background: rgba(200,168,75,0.12); color: #9a7c35; }
+        .service-card-icon.teal { background: rgba(13,115,119,0.08); color: #0d7377; }
+        .service-card h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+        .service-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; margin: 0; }
+
+        /* ============ QUOTE ============ */
+        .quote-block {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            border-radius: 12px;
+            padding: 36px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .quote-block::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 12rem;
+            color: rgba(255,255,255,0.05);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .quote-block blockquote {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.7;
+            margin: 0 0 16px;
+        }
+        .quote-block cite {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        /* ============ ANNOUNCEMENT BAR ============ */
+        .announcement-bar {
+            background: var(--gold);
+            padding: 10px 0;
+        }
+        .announcement-bar .inner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .ann-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--navy);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+        .ann-text {
+            font-size: 0.88rem;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* ============ PAGE BANNER ============ */
+        .page-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            padding: 48px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-banner::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(200,168,75,0.15);
+            border-radius: 50%;
+        }
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            right: 40px;
+            top: 40px;
+            width: 180px;
+            height: 180px;
+            border: 2px solid rgba(200,168,75,0.1);
+            border-radius: 50%;
+        }
+        .page-banner h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: white;
+            margin-bottom: 8px;
+        }
+        .page-banner .breadcrumb-nav {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.55);
+        }
+        .page-banner .breadcrumb-nav span { color: var(--gold); }
+
+        /* ============ GALLERY GRID ============ */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 220px 220px;
+            gap: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .photo-gallery .ph {
+            background: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+        .photo-gallery .ph:first-child {
+            grid-row: span 2;
+        }
+        .ph-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: rgba(0,0,0,0.25);
+            font-size: 2.5rem;
+        }
+        .ph-inner span {
+            font-size: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.2);
+        }
+        /* Gallery images via CSS gradients as placeholders */
+        .photo-gallery .ph:nth-child(1) { background: linear-gradient(135deg, #1a3a6b, #2d5fa5); }
+        .photo-gallery .ph:nth-child(1) .ph-inner { color: rgba(255,255,255,0.4); }
+        .photo-gallery .ph:nth-child(1) .ph-inner span { color: rgba(255,255,255,0.3); }
+        .photo-gallery .ph:nth-child(2) { background: linear-gradient(135deg, #8B4513, #D2691E); }
+        .photo-gallery .ph:nth-child(2) .ph-inner { color: rgba(255,255,255,0.4); }
+        .photo-gallery .ph:nth-child(2) .ph-inner span { color: rgba(255,255,255,0.3); }
+        .photo-gallery .ph:nth-child(3) { background: linear-gradient(135deg, #1a6b3a, #2da55f); }
+        .photo-gallery .ph:nth-child(3) .ph-inner { color: rgba(255,255,255,0.4); }
+        .photo-gallery .ph:nth-child(3) .ph-inner span { color: rgba(255,255,255,0.3); }
+        .photo-gallery .ph:nth-child(4) { background: linear-gradient(135deg, #6b1a3a, #a52d5f); }
+        .photo-gallery .ph:nth-child(4) .ph-inner { color: rgba(255,255,255,0.4); }
+        .photo-gallery .ph:nth-child(4) .ph-inner span { color: rgba(255,255,255,0.3); }
+        .photo-gallery .ph:nth-child(5) { background: linear-gradient(135deg, #3a3a1a, #7a7a2d); }
+        .photo-gallery .ph:nth-child(5) .ph-inner { color: rgba(255,255,255,0.4); }
+        .photo-gallery .ph:nth-child(5) .ph-inner span { color: rgba(255,255,255,0.3); }
+
+        /* ============ CONTACT ============ */
+        .contact-info-card {
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 28px;
+        }
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .contact-row:last-child { border-bottom: none; }
+        .contact-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .contact-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-mid);
+            margin-bottom: 4px;
+        }
+        .contact-value { font-size: 0.95rem; color: var(--text-dark); font-weight: 500; }
+
+        /* ============ FOOTER ============ */
+        .footer-main {
+            background: var(--navy);
+            padding: 60px 0 30px;
+        }
+        .footer-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .footer-logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .footer-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.87rem;
+            line-height: 1.7;
+            margin-top: 14px;
+        }
+        .footer-col-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.55);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin: 30px 0 20px;
+        }
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .footer-bottom p {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.78rem;
+            margin: 0;
+        }
+        .social-icons { display: flex; gap: 10px; }
+        .soc-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.55);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .soc-btn:hover { background: var(--gold); color: var(--navy); }
+
+        /* ============ MOBILE NAV ============ */
+        .mobile-nav-drawer {
+            display: none;
+            background: var(--navy);
+            padding: 10px 0;
+        }
+        .mobile-nav-drawer.open { display: block; }
+        .mobile-nav-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.8);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .mobile-nav-btn.active { color: var(--gold); background: rgba(255,255,255,0.05); }
+
+        /* ============ SCROLL TO TOP ============ */
+        #scrollTop {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            z-index: 999;
+            transition: all 0.2s;
+        }
+        #scrollTop:hover { background: var(--gold); color: var(--navy); }
+        #scrollTop.visible { display: flex; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 991px) {
+            .hero { padding: 50px 0; }
+            .hero-visual { display: none; }
+            .hamburger-btn { display: block; }
+            .desktop-nav { display: none !important; }
+        }
+        @media (max-width: 767px) {
+            .photo-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+            .photo-gallery .ph:first-child { grid-row: span 1; }
+            .photo-gallery { height: auto; }
+            .photo-gallery .ph { height: 150px; }
+            .museum-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 576px) {
+            .hero h1 { font-size: 1.7rem; }
+            .hero-cta-outline { display: none; }
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap" style="gap:6px">
+        <div>
+            <i class="bi bi-geo-alt-fill me-1"></i>
+            Küçükçekmece, İstanbul
+            <span class="separator">|</span>
+            <a href="#" onclick="showSection('iletisim')">
+                <i class="bi bi-telephone me-1"></i>0212 XXX XX XX
+            </a>
+            <span class="separator">|</span>
+            <a href="mailto:genclik@kucukcekmece.bel.tr">
+                <i class="bi bi-envelope me-1"></i>genclik@kucukcekmece.bel.tr
+            </a>
+        </div>
+        <div>
+            <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="me-2"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="me-2"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="container d-flex align-items-center justify-content-between gap-3">
+        <div class="logo-area" onclick="showSection('anasayfa')">
+            <div class="logo-emblem">
+                <i class="bi bi-building-fill"></i>
+            </div>
+            <div class="logo-text">
+                <div class="city-name">Küçükçekmece Belediyesi</div>
+                <div class="dept-name">Gençlik ve Spor Merkezi</div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <div class="header-search d-none d-lg-block">
+                <input type="text" placeholder="Ara...">
+            </div>
+            <button class="hamburger-btn" onclick="toggleMobileNav()">
+                <i class="bi bi-list" id="ham-icon"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
     <div class="container">
-        <a class="navbar-brand" href="#" onclick="showSection('anasayfa')">
-            <i class="bi bi-building"></i> KÜÇÜKÇEKMECE GENÇLİK
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" id="nav-anasayfa" onclick="showSection('anasayfa')">Ana Sayfa</a></li>
-                <li class="nav-item"><a class="nav-link" id="nav-ilkelerimiz" onclick="showSection('ilkelerimiz')">İlkelerimiz</a></li>
-                <li class="nav-item"><a class="nav-link" id="nav-kurslar" onclick="showSection('kurslar')">Mesleki Kurslar</a></li>
-                <li class="nav-item"><a class="nav-link" id="nav-etkinlikler" onclick="showSection('etkinlikler')">Etkinlikler & Geziler</a></li>
-                <li class="nav-item"><a class="nav-link" id="nav-yarismalar" onclick="showSection('yarismalar')">Yarışmalar</a></li>
-                <li class="nav-item"><a class="nav-link" id="nav-hizmetler" onclick="showSection('hizmetler')">Hizmetlerimiz</a></li>
-            </ul>
+        <div class="nav-container desktop-nav d-flex">
+            <button class="nav-btn active" id="nav-anasayfa" onclick="showSection('anasayfa')">
+                <i class="bi bi-house me-1"></i> Ana Sayfa
+            </button>
+            <button class="nav-btn" id="nav-ilkelerimiz" onclick="showSection('ilkelerimiz')">
+                <i class="bi bi-shield-check me-1"></i> İlkelerimiz
+            </button>
+            <button class="nav-btn" id="nav-kurslar" onclick="showSection('kurslar')">
+                <i class="bi bi-mortarboard me-1"></i> Mesleki Kurslar
+            </button>
+            <button class="nav-btn" id="nav-etkinlikler" onclick="showSection('etkinlikler')">
+                <i class="bi bi-calendar-event me-1"></i> Etkinlikler & Geziler
+            </button>
+            <button class="nav-btn" id="nav-yarismalar" onclick="showSection('yarismalar')">
+                <i class="bi bi-trophy me-1"></i> Yarışmalar
+            </button>
+            <button class="nav-btn" id="nav-hizmetler" onclick="showSection('hizmetler')">
+                <i class="bi bi-grid me-1"></i> Hizmetlerimiz
+            </button>
+            <button class="nav-btn" id="nav-iletisim" onclick="showSection('iletisim')">
+                <i class="bi bi-envelope me-1"></i> İletişim
+            </button>
         </div>
     </div>
 </nav>
 
-<section id="anasayfa" class="page-section active-section container">
-    <div class="row align-items-center h-100 mt-5">
-        <div class="col-lg-6">
-            <h1 class="display-4 fw-bold" style="color: var(--primary-color);">Geleceğini Şekillendir!</h1>
-            <p class="lead mt-3">Küçükçekmece Belediyesi Gençlik Merkezi olarak; eğitim, bilim, sanat ve teknolojiyle dolu bir gençlik için buradayız. Üst menüden sayfalarımız arasında gezinebilirsiniz.</p>
-            <button class="btn btn-primary btn-lg mt-3" style="background-color: var(--secondary-color); border:none;" onclick="showSection('ilkelerimiz')">İlkelerimizi Keşfet <i class="bi bi-arrow-right"></i></button>
-        </div>
-        <div class="col-lg-6 text-center mt-5 mt-lg-0">
-            <i class="bi bi-rocket-takeoff" style="font-size: 15rem; color: var(--primary-color); opacity: 0.8;"></i>
+<!-- MOBILE NAV -->
+<div class="mobile-nav-drawer" id="mobileNav">
+    <button class="mobile-nav-btn active" id="mob-nav-anasayfa" onclick="showSection('anasayfa')">🏠 Ana Sayfa</button>
+    <button class="mobile-nav-btn" id="mob-nav-ilkelerimiz" onclick="showSection('ilkelerimiz')">🛡️ İlkelerimiz</button>
+    <button class="mobile-nav-btn" id="mob-nav-kurslar" onclick="showSection('kurslar')">🎓 Mesleki Kurslar</button>
+    <button class="mobile-nav-btn" id="mob-nav-etkinlikler" onclick="showSection('etkinlikler')">📅 Etkinlikler & Geziler</button>
+    <button class="mobile-nav-btn" id="mob-nav-yarismalar" onclick="showSection('yarismalar')">🏆 Yarışmalar</button>
+    <button class="mobile-nav-btn" id="mob-nav-hizmetler" onclick="showSection('hizmetler')">📋 Hizmetlerimiz</button>
+    <button class="mobile-nav-btn" id="mob-nav-iletisim" onclick="showSection('iletisim')">✉️ İletişim</button>
+</div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+    <div class="container">
+        <div class="inner">
+            <span class="ann-label">📢 Duyuru</span>
+            <span class="ann-text">2026-2027 dönemi kurs kayıtları başlamıştır. Detaylı bilgi için lütfen merkezi arayınız.</span>
         </div>
     </div>
+</div>
+
+<!-- ==================== PAGE: ANA SAYFA ==================== -->
+<section id="anasayfa" class="page-section active-section">
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-grid-lines"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-badge">
+                        <i class="bi bi-star-fill" style="font-size:0.6rem"></i>
+                        Küçükçekmece Belediyesi Resmi Gençlik Platformu
+                    </div>
+                    <h1>Geleceğini<br><span>Şekillendir!</span></h1>
+                    <p class="lead">Eğitim, bilim, sanat ve teknolojiyle dolu bir gençlik için buradayız. Binlerce gencimizle birlikte büyüyor, öğreniyor ve üretiyoruz.</p>
+                    <div class="d-flex flex-wrap" style="gap:12px">
+                        <button class="hero-cta" onclick="showSection('kurslar')">
+                            <i class="bi bi-mortarboard-fill"></i> Kurslara Katıl
+                        </button>
+                        <button class="hero-cta-outline" onclick="showSection('hizmetler')">
+                            Hizmetlerimiz <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="hero-visual">
+                        <div class="d-flex gap-3">
+                            <div class="hero-stat-card">
+                                <div class="num">5.000+</div>
+                                <div class="lbl">Kayıtlı Genç</div>
+                            </div>
+                            <div class="hero-stat-card">
+                                <div class="num">12+</div>
+                                <div class="lbl">Aktif Kurs</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <div class="hero-stat-card">
+                                <div class="num">150+</div>
+                                <div class="lbl">Etkinlik / Yıl</div>
+                            </div>
+                            <div class="hero-stat-card">
+                                <div class="num">30+</div>
+                                <div class="lbl">Ödül & Derece</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="quick-links">
+        <div class="container px-0">
+            <div class="row g-0">
+                <div class="col-6 col-md-3">
+                    <a class="quick-link-item" onclick="showSection('kurslar')">
+                        <div class="ql-icon"><i class="bi bi-laptop"></i></div>
+                        <span class="ql-label">Kodlama Kursları</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a class="quick-link-item" onclick="showSection('etkinlikler')">
+                        <div class="ql-icon"><i class="bi bi-map"></i></div>
+                        <span class="ql-label">Kültür Gezileri</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a class="quick-link-item" onclick="showSection('yarismalar')">
+                        <div class="ql-icon"><i class="bi bi-robot"></i></div>
+                        <span class="ql-label">Robot Turnuvaları</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a class="quick-link-item" onclick="showSection('hizmetler')">
+                        <div class="ql-icon"><i class="bi bi-person-video2"></i></div>
+                        <span class="ql-label">Rehberlik</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HAKKIMIZDA -->
+    <div class="section-wrapper alt">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="section-header mb-0">
+                        <div class="section-tag">Hakkımızda</div>
+                        <h2 class="section-title">İlçemizin Gençlik<br>Kalbi Burada Atıyor</h2>
+                        <p class="section-subtitle">Küçükçekmece Belediyesi Gençlik ve Spor Merkezi olarak; ilçemizin her köşesinden genç bireylere kaliteli eğitim, beceri geliştirme ve sosyal gelişim fırsatları sunuyoruz.</p>
+                        <p class="section-subtitle mt-3">Rehberlik birimlerimiz, atölye salonlarımız ve geniş etkinlik programımızla her gencin potansiyelini keşfetmesine destek oluyoruz.</p>
+                        <button class="btn mt-4" style="background:var(--navy);color:white;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;padding:12px 28px;border-radius:4px;" onclick="showSection('ilkelerimiz')">
+                            İlkelerimizi İncele <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="photo-gallery">
+                        <div class="ph">
+                            <div class="ph-inner"><i class="bi bi-people-fill"></i><span>Gençlik Etkinlikleri</span></div>
+                        </div>
+                        <div class="ph">
+                            <div class="ph-inner"><i class="bi bi-laptop"></i><span>Kodlama Atölyesi</span></div>
+                        </div>
+                        <div class="ph">
+                            <div class="ph-inner"><i class="bi bi-tree"></i><span>Doğa Kampı</span></div>
+                        </div>
+                        <div class="ph">
+                            <div class="ph-inner"><i class="bi bi-palette"></i><span>Sanat Atölyesi</span></div>
+                        </div>
+                        <div class="ph">
+                            <div class="ph-inner"><i class="bi bi-trophy"></i><span>Ödül Törenleri</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="row g-0 text-center">
+                <div class="col-6 col-md-3 py-3">
+                    <div class="stat-item">
+                        <div class="stat-num">5.000+</div>
+                        <div class="stat-lbl">Kayıtlı Üye</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 py-3">
+                    <div class="stat-item">
+                        <div class="stat-num">12</div>
+                        <div class="stat-lbl">Aktif Kurs</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 py-3">
+                    <div class="stat-item">
+                        <div class="stat-num">150+</div>
+                        <div class="stat-lbl">Yıllık Etkinlik</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 py-3">
+                    <div class="stat-item">
+                        <div class="stat-num">30+</div>
+                        <div class="stat-lbl">Ulusal Ödül</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÖNE ÇIKAN KURSLAR -->
+    <div class="section-wrapper">
+        <div class="container">
+            <div class="section-header text-center">
+                <div class="section-tag" style="justify-content:center">Öne Çıkan</div>
+                <h2 class="section-title">Popüler Kurs & Atölyeler</h2>
+                <p class="section-subtitle mx-auto">Geleceğin mesleklerine hazırlık için uzman eğitmenler eşliğinde pratik beceriler edinin.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top">
+                            <i class="bi bi-code-slash"></i>
+                            <h5>Yazılım & Kodlama</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Blok tabanlı kodlama ve Python gibi modern dilleri öğrenerek yazılım geliştirme dünyasına adım atın. Gerçek projeler üretin.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top red">
+                            <i class="bi bi-robot"></i>
+                            <h5>Robotik & STEM</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Elektronik ve mekanik tasarım bilgisiyle kendi robotlarınızı inşa edin. Ulusal yarışmalara hazırlanın, mühendislik ruhunu keşfedin.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top gold">
+                            <i class="bi bi-camera-video"></i>
+                            <h5>Dijital İçerik & Greenbox</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Yeşil ekran teknolojisi ve dijital prodüksiyon araçlarıyla profesyonel içerikler üretin. Sosyal medya ve medya sektörüne hazırlanın.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn" style="background:var(--navy);color:white;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;padding:13px 32px;border-radius:4px;" onclick="showSection('kurslar')">
+                    Tüm Kursları Gör <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
 </section>
 
-<section id="ilkelerimiz" class="page-section container">
-    <div class="text-center">
-        <h2 class="section-title">İlkelerimiz</h2>
-    </div>
-    <div class="row justify-content-center mt-4">
-        <div class="col-lg-8">
-            <div class="principle-item"><i class="bi bi-check2-square"></i> İnsan ve vatandaşlık haklarına saygılı olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Yurt ve dünya sorunlarına duyarlı olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Barış ve eşitlikten yana ve uzlaşmacı olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Çevreyi koruma konusunda duyarlı olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Araştırmacı ve sorgulayıcı olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Sanatsal beğeni ve estetik anlayış sahibi olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Kendisiyle barışık, üretken ve uyumlu bir kişilik sahibi olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Gerçekçi olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Girişimci olmak.</div>
-            <div class="principle-item"><i class="bi bi-check2-square"></i> Çok yönlü olmak.</div>
+<!-- ==================== PAGE: İLKELERİMİZ ==================== -->
+<section id="ilkelerimiz" class="page-section">
+    <div class="page-banner">
+        <div class="container">
+            <h2><i class="bi bi-shield-check me-2"></i>İlkelerimiz</h2>
+            <div class="breadcrumb-nav">Ana Sayfa / <span>İlkelerimiz</span></div>
         </div>
     </div>
-</section>
+    <div class="section-wrapper alt">
+        <div class="container">
+            <div class="row g-5 align-items-start">
+                <div class="col-lg-8">
+                    <div class="section-header">
+                        <div class="section-tag">Temel Değerler</div>
+                        <h2 class="section-title">Gençliğe Yol Gösteren<br>İlkelerimiz</h2>
+                        <p class="section-subtitle">Merkezi­miz; evrensel değerlere, bilimsel düşünceye ve demokratik ilkelere bağlı bireyler yetiştirmeyi hedefler.</p>
+                    </div>
 
-<section id="kurslar" class="page-section container">
-    <div class="text-center">
-        <h2 class="section-title">Mesleki Kurslar ve Atölyeler</h2>
-    </div>
-    <div class="row g-4 mt-2">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header-custom text-center"><i class="bi bi-water fs-2"></i><br>Model Gemi Atölyesi</div>
-                <div class="card-body">
-                    <p>Denizciliği seven gençler model gemi atölyemizde farklı gemi modellerini inşa etme fırsatı bulurlar. Bu atölyede mekanik, tasarım, elektronik ve motor bilgisi alan gençler el becerilerini de geliştirirler.</p>
+                    <div class="principle-card">
+                        <div class="p-icon"><i class="bi bi-person-heart"></i></div>
+                        <div class="p-text"><strong>İnsan ve Vatandaşlık Haklarına Saygı:</strong> Her bireyin temel hak ve özgürlüklerine saygı göstererek, adil ve eşitlikçi bir toplum anlayışını benimser.</div>
+                    </div>
+                    <div class="principle-card">
+                        <div class="p-icon"><i class="bi bi-globe2"></i></div>
+                        <div class="p-text"><strong>Yurt ve Dünya Sorunlarına Duyarlılık:</strong> Yerel ve küresel sorunlara karşı farkındalık geliştiren, çözüm odaklı bireyler yetiştiririz.</div>
+                    </div>
+                    <div class="principle-card">
+                        <div class="p-icon"><i class="bi bi-handshake"></i></div>
+                        <div class="p-text"><strong>Barış, Eşitlik ve Uzlaşı:</strong> Farklılıklara saygı gösteren, diyalog yolunu benimseyen ve barışçıl çözümler üreten bir gençlik anlayışını destekler.</div>
+                    </div>
+                    <div class="principle-card">
+                        <div class="p-icon"><i class="bi bi-lightbulb"></i></div>
+                        <div class="p-text"><strong>Bilimsel ve Eleştirel Düşünce:</strong> Sorgulayan, araştıran ve öğrendiklerini hayata geçirebilen bireyler yetiştirmek en temel hedeflerimizden biridir.</div>
+                    </div>
+                    <div class="principle-card">
+                        <div class="p-icon"><i class="bi bi-recycle"></i></div>
+                        <div class="p-text"><strong>Çevreye Duyarlılık:</strong> Doğayı ve çevreyi koruma bilincini erken yaşlarda aşılayarak gelecek kuşaklar için sürdürülebilir bir dünya inşasına katkıda bulunuruz.</div>
+                    </div>
+                    <div class="principle-card">
+                        <div class="p-icon"><i class="bi bi-journal-text"></i></div>
+                        <div class="p-text"><strong>Kültürel ve Sanatsal Gelişim:</strong> Ulusal ve evrensel kültür mirasını tanıyan, sanatı ve edebiyatı seven bireyler yetiştirmeyi öncelik olarak benimser.</div>
+                    </div>
+                    <div class="principle-card">
+                        <div class="p-icon"><i class="bi bi-cpu"></i></div>
+                        <div class="p-text"><strong>Teknoloji Okuryazarlığı:</strong> Dijital çağın gerekliliklerine uygun, teknolojiyi bilinçli kullanan ve üretebilen bireyler yetiştiririz.</div>
+                    </div>
+                    <div class="principle-card">
+                        <div class="p-icon"><i class="bi bi-award"></i></div>
+                        <div class="p-text"><strong>Başarıya ve Mükemmeliyete Önem:</strong> Her alanda en iyiyi hedefleyen, çalışkan ve azimli bir gençlik anlayışını destekler, başarıyı ödüllendiririz.</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header-custom text-center"><i class="bi bi-palette fs-2"></i><br>Plastik Makyaj Atölyesi</div>
-                <div class="card-body">
-                    <p>Sanata ilgi duyan gençler için özel olarak düzenlenen bu atölyede katılımcılar temel makyaj tekniklerini öğrenirler. Sinema, dizi ve reklam gibi platformlarda uygulanan farklı makyaj tasarımlarının eğitimini alarak el becerilerini geliştirirler.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header-custom text-center"><i class="bi bi-camera-video fs-2"></i><br>Greenbox Atölyesi</div>
-                <div class="card-body">
-                    <p>Dijital içerik üretimi ve yeşil ekran teknolojisiyle ilgilenenler için tasarlanan bu atölyede gençler kendi dijital projelerini gerçekleştirme imkânı bulurlar.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="etkinlikler" class="page-section container">
-    <div class="text-center">
-        <h2 class="section-title">Etkinlikler, Kamplar ve Geziler</h2>
-    </div>
-    
-    <div class="row mt-4">
-        <div class="col-lg-6 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title text-primary"><i class="bi bi-tree"></i> Gençlik Kampları</h4>
-                    <p>Yıl içerisinde gerçekleştirdiğimiz gençlik kamplarıyla gençleri doğada yaşamla tanıştırıyoruz. Sosyalleşmelerine ve sorumluluk kazanmalarına katkıda bulunan kamplarla hem eğleniyor hem öğreniyorlar.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title text-primary"><i class="bi bi-mic"></i> Seminer ve Söyleşiler</h4>
-                    <p>Belli aralıklarla yapılan seminer ve söyleşilerde öğrencilerimizi ve velilerimizi alanında uzman kişilerle buluşturuyoruz. Meslek tanıtımları, rehberlik çalışmaları, teknoloji uygulamaları ve kitap sohbetleri gibi toplantılarla katılımcılarda farkındalık kazandırmayı hedefliyoruz.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card mt-2">
-        <div class="card-body">
-            <h4 class="card-title text-primary text-center"><i class="bi bi-bus-front"></i> Bilim Kültür Gezileri</h4>
-            <p class="text-center mb-4">Bilim ve kültür gezileriyle gençlerimiz sosyalleşme imkânı bularak tarihi ve farklı kültürleri rehber eşliğinde tanımış olur. Gelecekteki kariyer yollarını şekillendirirken gençlerimizin vizyonlarını genişletmek, farklı sektörlerdeki çalışmaları tanımak ve kişisel gelişimlerine katkıda bulunmak asıl amaçlarımızdandır.</p>
-            <div class="quote-box text-center mb-4">
-                "Gezgin bir yere varmak için değil, keşfetmek için seyahat eder." - Cervantes
-            </div>
-            
-            <h5 class="fw-bold text-center mb-3">Ziyaret Edilen Başlıca Lokasyonlar</h5>
-            <ul class="museum-list px-4">
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Cumhuriyet Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Kemal Sunal Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Gazhane</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Doğa Bilim Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Dijital Sanatlar Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Robot Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Havacılık Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Atatürk Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Bilim ve Teknoloji Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Aşiyan Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Baruthane</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> İklim Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Karikatür Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> İstanbul Sanat Müzesi</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> Yerebatan Sarnıcı</li>
-                <li><i class="bi bi-geo-alt-fill text-danger"></i> İstanbul Tasarım Müzesi</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<section id="yarismalar" class="page-section container">
-    <div class="text-center">
-        <h2 class="section-title">Ulusal ve Uluslararası Yarışmalar</h2>
-    </div>
-    <div class="row align-items-center mt-4">
-        <div class="col-lg-6">
-            <p class="lead">Yıl içerisinde takibini yaptığımız ve hazırlandığımız yarışmalara gençlerimizle katılarak onları çeşitli platformla tanıştırıyor ve geleceklerini şekillendiriyoruz.</p>
-            <ul class="list-group mt-4 shadow-sm">
-                <li class="list-group-item d-flex align-items-center"><i class="bi bi-robot fs-4 text-primary me-3"></i> Robot Turnuvaları</li>
-                <li class="list-group-item d-flex align-items-center"><i class="bi bi-cpu fs-4 text-primary me-3"></i> Teknofest Projeleri</li>
-                <li class="list-group-item d-flex align-items-center"><i class="bi bi-lightbulb fs-4 text-primary me-3"></i> Tübitak Projeleri</li>
-                <li class="list-group-item d-flex align-items-center"><i class="bi bi-pen fs-4 text-primary me-3"></i> Şiir Yarışmaları</li>
-                <li class="list-group-item d-flex align-items-center"><i class="bi bi-star fs-4 text-primary me-3"></i> İnovasyon Yarışmaları</li>
-                <li class="list-group-item d-flex align-items-center"><i class="bi bi-puzzle fs-4 text-primary me-3"></i> Akıl ve Zekâ Oyunları Yarışmaları</li>
-            </ul>
-        </div>
-        <div class="col-lg-6 text-center mt-5 mt-lg-0">
-            <i class="bi bi-trophy" style="font-size: 12rem; color: #ffc107;"></i>
-        </div>
-    </div>
-</section>
-
-<section id="hizmetler" class="page-section container">
-    <div class="text-center">
-        <h2 class="section-title">Hizmetlerimiz</h2>
-    </div>
-    <div class="row g-4 mt-2">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header-custom text-center"><i class="bi bi-person-lines-fill fs-2"></i><br>Rehberlik Hizmetleri</div>
-                <div class="card-body">
-                    <p>Rehberlik birimimizde gençlere bireysel ve eğitsel destek, mesleki danışmanlık ve aile rehberliği hizmetleri sunulmaktadır. Üniversiteye hazırlık sürecinde olan üyelerimize ders çalışma programı ve takibi, öğrencinin gelişimi ve motivasyon desteğiyle tercih danışmanlığı hizmeti verilmektedir.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header-custom text-center" style="background-color: #dc3545;"><i class="bi bi-book fs-2"></i><br>Çok Amaçlı Ders Çalışma Salonu</div>
-                <div class="card-body">
-                    <p>Gençlik Merkezi'nin Çok Amaçlı Salonu ücretsiz Wi-Fi hizmeti, serbest ders çalışma ve etüt saatleri imkânı sunar. Gençler sınavlara hazırlık sürecinde istedikleri zaman güvenli ve rahat ders çalışma alanlarından faydalanır.</p>
-                    <div class="quote-box">
-                        "Merak, bilginin tohumudur." - F. Bacon
+                <div class="col-lg-4">
+                    <div class="quote-block mb-4">
+                        <blockquote>"Gençlik bir milleti ya yükseltir ya da çürütür. Sağlam temelli bir gençlik, milletin en büyük güvencesidir."</blockquote>
+                        <cite>— Mustafa Kemal Atatürk</cite>
+                    </div>
+                    <div style="background:var(--light-gray);border-radius:12px;padding:24px;">
+                        <h6 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--navy);margin-bottom:16px;font-size:0.9rem;">Merkez Bilgileri</h6>
+                        <div style="font-size:0.88rem;color:var(--text-mid);line-height:2;">
+                            <div><i class="bi bi-clock me-2 text-navy"></i><strong>Açık:</strong> Her gün 09:00 – 21:00</div>
+                            <div><i class="bi bi-calendar-check me-2"></i><strong>Yıl:</strong> 2026 – 2027 Dönemi</div>
+                            <div><i class="bi bi-people me-2"></i><strong>Kapasite:</strong> 5.000+ Üye</div>
+                            <div><i class="bi bi-award me-2"></i><strong>Akreditasyon:</strong> İstanbul Büyükşehir Onaylı</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -304,37 +1285,681 @@
     </div>
 </section>
 
-<footer class="bg-dark text-white text-center py-4 mt-5">
-    <p class="mb-0">&copy; 2026 Küçükçekmece Belediyesi Gençlik Merkezi Dijital Platformu.</p>
+<!-- ==================== PAGE: MESLEKİ KURSLAR ==================== -->
+<section id="kurslar" class="page-section">
+    <div class="page-banner">
+        <div class="container">
+            <h2><i class="bi bi-mortarboard me-2"></i>Mesleki Kurslar & Atölyeler</h2>
+            <div class="breadcrumb-nav">Ana Sayfa / <span>Mesleki Kurslar</span></div>
+        </div>
+    </div>
+    <div class="section-wrapper">
+        <div class="container">
+            <div class="section-header text-center">
+                <div class="section-tag" style="justify-content:center">Eğitim Programları</div>
+                <h2 class="section-title">Kariyer Yolculuğunuzu<br>Buradan Başlatın</h2>
+                <p class="section-subtitle mx-auto">Uzman eğitmenler eşliğinde, gerçek dünya projeleriyle desteklenen kapsamlı kurs ve atölye programlarımız.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top">
+                            <i class="bi bi-code-slash"></i>
+                            <h5>Yazılım & Kodlama Atölyesi</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Blok kodlama (Scratch) ile başlayan, Python diline uzanan kapsamlı bir yazılım eğitimi. Oyun geliştirme, web tasarımı ve temel algoritma mantığını pratik projelerle öğrenin.</p>
+                            <div class="mt-3 d-flex flex-wrap gap-1">
+                                <span style="background:var(--light-gray);font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:var(--navy)">8-18 Yaş</span>
+                                <span style="background:#d4edda;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:#155724">Aktif Kayıt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top red">
+                            <i class="bi bi-robot"></i>
+                            <h5>Robotik & Kodlama</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Elektronik devre tasarımı ve mekanik yapı bilgisiyle kendi robotlarını inşa etme fırsatı. LEGO Mindstorms ve Arduino platformlarıyla başlangıç seviyesinden ileri seviyeye uzanır.</p>
+                            <div class="mt-3 d-flex flex-wrap gap-1">
+                                <span style="background:var(--light-gray);font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:var(--navy)">10-18 Yaş</span>
+                                <span style="background:#d4edda;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:#155724">Aktif Kayıt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top gold">
+                            <i class="bi bi-palette"></i>
+                            <h5>Plastik & Sahne Makyajı</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Sinema, dizi ve reklam sektörlerine yönelik profesyonel makyaj teknikleri. Temel makyaj uygulamalarından efekt ve protez çalışmalarına kadar kapsamlı bir atölye deneyimi.</p>
+                            <div class="mt-3 d-flex flex-wrap gap-1">
+                                <span style="background:var(--light-gray);font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:var(--navy)">15+ Yaş</span>
+                                <span style="background:#d4edda;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:#155724">Aktif Kayıt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top teal">
+                            <i class="bi bi-camera-video"></i>
+                            <h5>Greenbox & Dijital İçerik</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Yeşil ekran teknolojisi ile profesyonel video prodüksiyonu. Kamera kullanımı, ışıklandırma, kurgulama ve sosyal medya içerik stratejisi dahil kapsamlı bir program.</p>
+                            <div class="mt-3 d-flex flex-wrap gap-1">
+                                <span style="background:var(--light-gray);font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:var(--navy)">13+ Yaş</span>
+                                <span style="background:#d4edda;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:#155724">Aktif Kayıt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top" style="background:linear-gradient(135deg,#5b0e91,#8e44ad)">
+                            <i class="bi bi-book"></i>
+                            <h5>Yabancı Dil Atölyesi</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>İngilizce başta olmak üzere ikinci yabancı dil seçenekleriyle gençlerin küresel iletişim becerilerini geliştiren interaktif dil kursları. Konuşma odaklı yaklaşım.</p>
+                            <div class="mt-3 d-flex flex-wrap gap-1">
+                                <span style="background:var(--light-gray);font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:var(--navy)">8-18 Yaş</span>
+                                <span style="background:#fff3cd;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:#856404">Yakında</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-card-top" style="background:linear-gradient(135deg,#b7410e,#e25822)">
+                            <i class="bi bi-brush"></i>
+                            <h5>Güzel Sanatlar Atölyesi</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Resim, heykel ve grafik tasarım alanlarında çocuk ve gençlerin yaratıcı potansiyelini ortaya çıkaran kapsamlı sanat eğitimi programı.</p>
+                            <div class="mt-3 d-flex flex-wrap gap-1">
+                                <span style="background:var(--light-gray);font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:var(--navy)">6-18 Yaş</span>
+                                <span style="background:#d4edda;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;color:#155724">Aktif Kayıt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KAYIT BILGI KUTUSU -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div style="background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:14px;padding:36px 40px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
+                        <div style="font-size:3rem;color:var(--gold)"><i class="bi bi-info-circle-fill"></i></div>
+                        <div style="flex:1;min-width:200px;">
+                            <h5 style="font-family:'Montserrat',sans-serif;font-weight:800;color:white;margin-bottom:8px;">Kayıt ve Başvuru Bilgileri</h5>
+                            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.92rem;line-height:1.6;">Tüm kurslarımız <strong style="color:var(--gold-light)">ücretsizdir</strong>. Kayıt yaptırmak için merkezimize şahsen başvurabilir veya telefonla ön kayıt yaptırabilirsiniz. Kontenjanlar sınırlıdır.</p>
+                        </div>
+                        <button onclick="showSection('iletisim')" style="background:var(--gold);color:var(--navy);font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:1px;padding:13px 28px;border:none;border-radius:4px;cursor:pointer;white-space:nowrap;">
+                            Bize Ulaş <i class="bi bi-arrow-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PAGE: ETKİNLİKLER ==================== -->
+<section id="etkinlikler" class="page-section">
+    <div class="page-banner">
+        <div class="container">
+            <h2><i class="bi bi-calendar-event me-2"></i>Etkinlikler, Kamplar & Geziler</h2>
+            <div class="breadcrumb-nav">Ana Sayfa / <span>Etkinlikler & Geziler</span></div>
+        </div>
+    </div>
+    <div class="section-wrapper alt">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="feature-card-top teal">
+                            <i class="bi bi-tree"></i>
+                            <h5>Gençlik Kampları</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Yıl içerisinde gerçekleştirdiğimiz gençlik kamplarıyla gençleri doğada yaşamla tanıştırıyoruz. Sosyalleşme, sorumluluk ve takım çalışması becerilerini geliştiren kamplarımızda hem eğleniliyor hem öğreniliyor.</p>
+                            <ul style="margin-top:14px;padding-left:18px;color:var(--text-mid);font-size:0.88rem;line-height:2;">
+                                <li>Yaz ve kış dönemi kamp seçenekleri</li>
+                                <li>Profesyonel rehberler eşliğinde</li>
+                                <li>Sertifika programları</li>
+                                <li>İlk yardım eğitimi dahil</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <div class="feature-card-top" style="background:linear-gradient(135deg,#5b0e91,#8e44ad)">
+                            <i class="bi bi-mic-fill"></i>
+                            <h5>Seminer ve Söyleşiler</h5>
+                        </div>
+                        <div class="feature-card-body">
+                            <p>Belli aralıklarla yapılan seminer ve söyleşilerde öğrencilerimizi ve velilerimizi alanında uzman kişilerle buluşturuyoruz.</p>
+                            <ul style="margin-top:14px;padding-left:18px;color:var(--text-mid);font-size:0.88rem;line-height:2;">
+                                <li>Meslek tanıtım etkinlikleri</li>
+                                <li>Rehberlik çalışmaları</li>
+                                <li>Teknoloji uygulamaları panelleri</li>
+                                <li>Kitap sohbetleri ve edebiyat günleri</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GEZİLER -->
+            <div class="section-header">
+                <div class="section-tag">Kültür Gezileri</div>
+                <h2 class="section-title">Bilim & Kültür Gezilerimiz</h2>
+                <p class="section-subtitle">Gençlerimiz sosyalleşme imkânı bularak tarihi ve farklı kültürleri rehber eşliğinde tanır. Vizyon ve perspektiflerini genişletirler.</p>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-12">
+                    <div class="quote-block">
+                        <blockquote>"Gezgin bir yere varmak için değil, keşfetmek için seyahat eder."</blockquote>
+                        <cite>— Miguel de Cervantes</cite>
+                    </div>
+                </div>
+            </div>
+
+            <div class="museum-grid">
+                <div class="museum-item"><div class="mi-dot"></div>Cumhuriyet Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Kemal Sunal Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Gazhane Kültür Merkezi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Doğa Bilim Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Dijital Sanatlar Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Robot Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Havacılık Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Atatürk Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Bilim ve Teknoloji Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Aşiyan Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Baruthane</div>
+                <div class="museum-item"><div class="mi-dot"></div>İklim Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Karikatür Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>İstanbul Sanat Müzesi</div>
+                <div class="museum-item"><div class="mi-dot"></div>Yerebatan Sarnıcı</div>
+                <div class="museum-item"><div class="mi-dot"></div>İstanbul Tasarım Müzesi</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PAGE: YARIŞMALAR ==================== -->
+<section id="yarismalar" class="page-section">
+    <div class="page-banner">
+        <div class="container">
+            <h2><i class="bi bi-trophy me-2"></i>Ulusal & Uluslararası Yarışmalar</h2>
+            <div class="breadcrumb-nav">Ana Sayfa / <span>Yarışmalar</span></div>
+        </div>
+    </div>
+    <div class="section-wrapper alt">
+        <div class="container">
+            <div class="row g-5 align-items-start">
+                <div class="col-lg-7">
+                    <div class="section-header mb-4">
+                        <div class="section-tag">Başarı Platformları</div>
+                        <h2 class="section-title">Gençlerimizin Parladığı<br>Yarışmalar</h2>
+                        <p class="section-subtitle">Yıl içerisinde takibini yaptığımız ve hazırlandığımız yarışmalara gençlerimizle katılarak onları ulusal ve uluslararası platformlarla tanıştırıyoruz.</p>
+                    </div>
+
+                    <div class="competition-item">
+                        <div class="comp-icon"><i class="bi bi-robot"></i></div>
+                        <div>
+                            <div class="comp-title">Robot Turnuvaları</div>
+                            <div class="comp-desc">Tasarım, inşa ve programlama becerilerini birleştiren takım yarışmaları</div>
+                        </div>
+                        <span class="comp-badge active">Aktif</span>
+                    </div>
+                    <div class="competition-item">
+                        <div class="comp-icon"><i class="bi bi-rocket-takeoff"></i></div>
+                        <div>
+                            <div class="comp-title">TEKNOFEST Projeleri</div>
+                            <div class="comp-desc">Türkiye'nin en büyük teknoloji yarışmasında inovatif projeler</div>
+                        </div>
+                        <span class="comp-badge active">Aktif</span>
+                    </div>
+                    <div class="competition-item">
+                        <div class="comp-icon"><i class="bi bi-microscope"></i></div>
+                        <div>
+                            <div class="comp-title">TÜBİTAK Projeleri</div>
+                            <div class="comp-desc">Bilimsel araştırma projeleri ile akademik kariyer kapısı</div>
+                        </div>
+                        <span class="comp-badge active">Aktif</span>
+                    </div>
+                    <div class="competition-item">
+                        <div class="comp-icon"><i class="bi bi-pen"></i></div>
+                        <div>
+                            <div class="comp-title">Şiir & Edebiyat Yarışmaları</div>
+                            <div class="comp-desc">Dil yeteneğini ve yaratıcılığı ön plana çıkaran ulusal yarışmalar</div>
+                        </div>
+                        <span class="comp-badge">Dönemsel</span>
+                    </div>
+                    <div class="competition-item">
+                        <div class="comp-icon"><i class="bi bi-star"></i></div>
+                        <div>
+                            <div class="comp-title">İnovasyon Yarışmaları</div>
+                            <div class="comp-desc">Günlük hayat sorunlarına yaratıcı çözümler geliştirme platformu</div>
+                        </div>
+                        <span class="comp-badge active">Aktif</span>
+                    </div>
+                    <div class="competition-item">
+                        <div class="comp-icon"><i class="bi bi-puzzle"></i></div>
+                        <div>
+                            <div class="comp-title">Akıl ve Zekâ Oyunları</div>
+                            <div class="comp-desc">Analitik düşünme ve problem çözme becerilerini geliştiren turnuvalar</div>
+                        </div>
+                        <span class="comp-badge active">Aktif</span>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div style="background:linear-gradient(160deg,var(--navy),var(--navy-mid));border-radius:16px;padding:36px;text-align:center;position:sticky;top:100px;">
+                        <i class="bi bi-trophy-fill" style="font-size:5rem;color:var(--gold);display:block;margin-bottom:20px;"></i>
+                        <h4 style="font-family:'Montserrat',sans-serif;font-weight:800;color:white;font-size:1.3rem;margin-bottom:12px;">30+ Ulusal Ödül</h4>
+                        <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;margin-bottom:24px;">Gençlerimiz ulusal ve uluslararası platformlarda ilçemizi başarıyla temsil etti.</p>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                            <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
+                                <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;color:var(--gold);">8+</div>
+                                <div style="font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">Birincilik</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center;">
+                                <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;color:#c0c0c0;">12+</div>
+                                <div style="font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">İkincilik</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PAGE: HİZMETLERİMİZ ==================== -->
+<section id="hizmetler" class="page-section">
+    <div class="page-banner">
+        <div class="container">
+            <h2><i class="bi bi-grid-fill me-2"></i>Hizmetlerimiz</h2>
+            <div class="breadcrumb-nav">Ana Sayfa / <span>Hizmetlerimiz</span></div>
+        </div>
+    </div>
+    <div class="section-wrapper alt">
+        <div class="container">
+            <div class="section-header text-center">
+                <div class="section-tag" style="justify-content:center">Destek & İmkânlar</div>
+                <h2 class="section-title">Her Gence Kapsamlı Hizmet</h2>
+                <p class="section-subtitle mx-auto">Gençliğin her ihtiyacını karşılamak için tasarlanmış, ücretsiz ve erişilebilir hizmetler sunuyoruz.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-card-accent navy"></div>
+                        <div class="service-card-inner">
+                            <div class="service-card-icon navy"><i class="bi bi-person-lines-fill"></i></div>
+                            <h5>Rehberlik Hizmetleri</h5>
+                            <p>Bireysel ve eğitsel destek, mesleki danışmanlık ve aile rehberliği. Üniversite tercihi ve kariyer planlaması için uzman danışmanlık.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-card-accent red"></div>
+                        <div class="service-card-inner">
+                            <div class="service-card-icon red"><i class="bi bi-book-fill"></i></div>
+                            <h5>Çok Amaçlı Ders Salonu</h5>
+                            <p>Ücretsiz Wi-Fi, geniş masa alanları ve sessiz çalışma ortamı. Sınav dönemlerinde ek etüt saatleri ile tam destek.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-card-accent gold"></div>
+                        <div class="service-card-inner">
+                            <div class="service-card-icon gold"><i class="bi bi-laptop-fill"></i></div>
+                            <h5>Bilgisayar Laboratuvarı</h5>
+                            <p>Modern donanımlı bilgisayarlar ve hızlı internet bağlantısı ile her türlü dijital proje ve araştırmayı gerçekleştirebileceğiniz alan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-card-accent teal"></div>
+                        <div class="service-card-inner">
+                            <div class="service-card-icon teal"><i class="bi bi-heart-pulse-fill"></i></div>
+                            <h5>Psikolojik Destek</h5>
+                            <p>Uzman psikologlarımızla bireysel görüşme imkânı. Akademik kaygı, sosyal uyum ve kişisel gelişim konularında profesyonel destek.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="service-card-accent" style="background:#5b0e91"></div>
+                        <div class="service-card-inner">
+                            <div class="service-card-icon" style="background:rgba(91,14,145,0.08);color:#5b0e91"><i class="bi bi-trophy-fill"></i></div>
+                            <h5>Yarışma Koordinasyon</h5>
+                            <p>Ulusal ve uluslararası yarışmalar için başvuru, hazırlık ve katılım süreçlerinde eksiksiz rehberlik ve destek hizmetleri.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="service-card-accent" style="background:#b7410e"></div>
+                        <div class="service-card-inner">
+                            <div class="service-card-icon" style="background:rgba(183,65,14,0.08);color:#b7410e"><i class="bi bi-bus-front-fill"></i></div>
+                            <h5>Kültür Gezisi Organizasyonu</h5>
+                            <p>Rehber eşliğinde müze, tarihi mekan ve kurumsal ziyaretlerin tamamı organize edilir. Ulaşım ve sigorta hizmetleri dahildir.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="service-card-accent" style="background:#0d7377"></div>
+                        <div class="service-card-inner">
+                            <div class="service-card-icon" style="background:rgba(13,115,119,0.08);color:#0d7377"><i class="bi bi-briefcase-fill"></i></div>
+                            <h5>Kariyer & Staj Danışmanlığı</h5>
+                            <p>Öğrencileri ilgili sektörlerle buluşturan staj ağı, CV hazırlama atölyeleri ve iş görüşmesi simülasyonları.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DERS SALONU -->
+            <div class="row mt-5">
+                <div class="col-lg-6">
+                    <div class="quote-block">
+                        <blockquote>"Merak, bilginin tohumudur. Onu sulamak için en iyi ortamı sunmak bizim görevimiz."</blockquote>
+                        <cite>— Francis Bacon'dan ilham</cite>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <div style="background:white;border:1px solid var(--light-gray);border-radius:12px;padding:28px;">
+                        <h5 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--navy);margin-bottom:16px;">
+                            <i class="bi bi-clock-fill me-2 text-red" style="color:var(--red)"></i>Çalışma Saatleri
+                        </h5>
+                        <table style="width:100%;font-size:0.9rem;border-collapse:collapse;">
+                            <tr style="border-bottom:1px solid var(--light-gray);">
+                                <td style="padding:10px 0;color:var(--text-mid);">Pazartesi – Cuma</td>
+                                <td style="padding:10px 0;font-weight:700;color:var(--navy);text-align:right;">09:00 – 21:00</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--light-gray);">
+                                <td style="padding:10px 0;color:var(--text-mid);">Cumartesi</td>
+                                <td style="padding:10px 0;font-weight:700;color:var(--navy);text-align:right;">09:00 – 18:00</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px 0;color:var(--text-mid);">Pazar</td>
+                                <td style="padding:10px 0;font-weight:700;color:var(--red);text-align:right;">Kapalı</td>
+                            </tr>
+                        </table>
+                        <div style="background:var(--off-white);border-radius:8px;padding:12px 16px;margin-top:14px;font-size:0.82rem;color:var(--text-mid);">
+                            <i class="bi bi-info-circle me-1"></i> Resmi tatillerde hizmet saatlerimiz değişebilir.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PAGE: İLETİŞİM ==================== -->
+<section id="iletisim" class="page-section">
+    <div class="page-banner">
+        <div class="container">
+            <h2><i class="bi bi-envelope me-2"></i>İletişim</h2>
+            <div class="breadcrumb-nav">Ana Sayfa / <span>İletişim</span></div>
+        </div>
+    </div>
+    <div class="section-wrapper alt">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <div class="section-header">
+                        <div class="section-tag">Bize Ulaşın</div>
+                        <h2 class="section-title">Size Nasıl<br>Yardımcı Olabiliriz?</h2>
+                        <p class="section-subtitle">Kurs kayıtları, etkinlikler veya herhangi bir konuda merkezimize ulaşabilirsiniz.</p>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-row">
+                            <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                            <div>
+                                <div class="contact-label">Adres</div>
+                                <div class="contact-value">Küçükçekmece Belediyesi Gençlik ve Spor Merkezi<br>Küçükçekmece, İstanbul</div>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                            <div>
+                                <div class="contact-label">Telefon</div>
+                                <div class="contact-value">0212 XXX XX XX</div>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                            <div>
+                                <div class="contact-label">E-Posta</div>
+                                <div class="contact-value">genclik@kucukcekmece.bel.tr</div>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-icon"><i class="bi bi-clock-fill"></i></div>
+                            <div>
+                                <div class="contact-label">Çalışma Saatleri</div>
+                                <div class="contact-value">Pzt–Cum: 09:00–21:00<br>Cmt: 09:00–18:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div style="background:white;border:1px solid var(--light-gray);border-radius:14px;padding:36px;">
+                        <h5 style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--navy);margin-bottom:24px;">Bize Mesaj Gönderin</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-mid);display:block;margin-bottom:6px;">Ad Soyad</label>
+                                <input type="text" placeholder="Adınız Soyadınız" style="width:100%;border:1px solid var(--light-gray);border-radius:6px;padding:11px 14px;font-size:0.9rem;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--light-gray)'">
+                            </div>
+                            <div class="col-md-6">
+                                <label style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-mid);display:block;margin-bottom:6px;">Telefon</label>
+                                <input type="tel" placeholder="05XX XXX XX XX" style="width:100%;border:1px solid var(--light-gray);border-radius:6px;padding:11px 14px;font-size:0.9rem;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--light-gray)'">
+                            </div>
+                            <div class="col-12">
+                                <label style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-mid);display:block;margin-bottom:6px;">E-Posta</label>
+                                <input type="email" placeholder="ornek@mail.com" style="width:100%;border:1px solid var(--light-gray);border-radius:6px;padding:11px 14px;font-size:0.9rem;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--light-gray)'">
+                            </div>
+                            <div class="col-12">
+                                <label style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-mid);display:block;margin-bottom:6px;">Konu</label>
+                                <select style="width:100%;border:1px solid var(--light-gray);border-radius:6px;padding:11px 14px;font-size:0.9rem;outline:none;background:white;color:var(--text-dark);">
+                                    <option>Kurs Kaydı Hakkında</option>
+                                    <option>Etkinlik Bilgisi</option>
+                                    <option>Yarışma Danışmanlığı</option>
+                                    <option>Rehberlik Hizmetleri</option>
+                                    <option>Diğer</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-mid);display:block;margin-bottom:6px;">Mesajınız</label>
+                                <textarea rows="4" placeholder="Mesajınızı buraya yazınız..." style="width:100%;border:1px solid var(--light-gray);border-radius:6px;padding:11px 14px;font-size:0.9rem;outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--light-gray)'"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button onclick="handleFormSubmit()" style="width:100%;background:var(--navy);color:white;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;padding:14px;border:none;border-radius:6px;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='var(--navy-light)'" onmouseout="this.style.background='var(--navy)'">
+                                    <i class="bi bi-send-fill me-2"></i> Mesajı Gönder
+                                </button>
+                            </div>
+                        </div>
+                        <div id="formSuccess" style="display:none;background:#d4edda;color:#155724;border-radius:8px;padding:14px 18px;margin-top:14px;font-weight:600;font-size:0.9rem;">
+                            <i class="bi bi-check-circle-fill me-2"></i> Mesajınız başarıyla iletildi. En kısa sürede geri dönüş yapılacaktır.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-main">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                    <div style="width:48px;height:48px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--navy);">
+                        <i class="bi bi-building-fill"></i>
+                    </div>
+                    <div>
+                        <div class="footer-logo-text">Küçükçekmece Belediyesi</div>
+                        <div class="footer-logo-sub">Gençlik ve Spor Merkezi</div>
+                    </div>
+                </div>
+                <p class="footer-desc">Küçükçekmece'nin gençliği için eğitim, kültür, sanat ve teknoloji alanlarında kapsamlı hizmetler sunmaktayız.</p>
+                <div class="social-icons mt-3">
+                    <a href="#" class="soc-btn"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="soc-btn"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="soc-btn"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="soc-btn"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4">
+                <div class="footer-col-title">Hızlı Bağlantı</div>
+                <ul class="footer-links">
+                    <li><a onclick="showSection('anasayfa')" style="cursor:pointer">Ana Sayfa</a></li>
+                    <li><a onclick="showSection('ilkelerimiz')" style="cursor:pointer">İlkelerimiz</a></li>
+                    <li><a onclick="showSection('kurslar')" style="cursor:pointer">Mesleki Kurslar</a></li>
+                    <li><a onclick="showSection('etkinlikler')" style="cursor:pointer">Etkinlikler</a></li>
+                    <li><a onclick="showSection('yarismalar')" style="cursor:pointer">Yarışmalar</a></li>
+                    <li><a onclick="showSection('hizmetler')" style="cursor:pointer">Hizmetlerimiz</a></li>
+                    <li><a onclick="showSection('iletisim')" style="cursor:pointer">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="footer-col-title">Hizmetlerimiz</div>
+                <ul class="footer-links">
+                    <li><a href="#">Rehberlik Birimi</a></li>
+                    <li><a href="#">Ders Çalışma Salonu</a></li>
+                    <li><a href="#">Bilgisayar Laboratuvarı</a></li>
+                    <li><a href="#">Kariyer Danışmanlığı</a></li>
+                    <li><a href="#">Psikolojik Destek</a></li>
+                    <li><a href="#">Kültür Gezileri</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="footer-col-title">İletişim</div>
+                <ul class="footer-links">
+                    <li>
+                        <i class="bi bi-geo-alt me-2" style="color:var(--gold)"></i>
+                        Küçükçekmece, İstanbul
+                    </li>
+                    <li>
+                        <i class="bi bi-telephone me-2" style="color:var(--gold)"></i>
+                        0212 XXX XX XX
+                    </li>
+                    <li>
+                        <i class="bi bi-envelope me-2" style="color:var(--gold)"></i>
+                        genclik@kucukcekmece.bel.tr
+                    </li>
+                    <li>
+                        <i class="bi bi-clock me-2" style="color:var(--gold)"></i>
+                        Pzt–Cum: 09:00 – 21:00
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="footer-divider">
+        <div class="footer-bottom">
+            <p>© 2026 Küçükçekmece Belediyesi Gençlik ve Spor Merkezi. Tüm hakları saklıdır.</p>
+            <p>T.C. Küçükçekmece Belediye Başkanlığı Resmi Platformu</p>
+        </div>
+    </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SCROLL TO TOP -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="bi bi-chevron-up"></i>
+</button>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    function showSection(sectionId) {
-        // Tüm bölümleri gizle
-        const sections = document.querySelectorAll('.page-section');
-        sections.forEach(sec => sec.classList.remove('active-section'));
-        
-        // Tüm menü linklerinden aktifliği kaldır
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => link.classList.remove('active'));
-        
-        // İstenen bölümü göster ve ilgili menü linkini aktif yap
-        document.getElementById(sectionId).classList.add('active-section');
-        document.getElementById('nav-' + sectionId).classList.add('active');
-        
-        // Mobilde menüyü tıklamadan sonra kapat
-        const navbarCollapse = document.getElementById('navbarNav');
-        if(navbarCollapse.classList.contains('show')) {
-            var bsCollapse = new bootstrap.Collapse(navbarCollapse, {toggle: false});
-            bsCollapse.hide();
-        }
-        
-        // Sayfanın en üstüne kaydır
+    const sections = ['anasayfa','ilkelerimiz','kurslar','etkinlikler','yarismalar','hizmetler','iletisim'];
+    let mobileOpen = false;
+
+    function showSection(id) {
+        // hide all
+        sections.forEach(s => {
+            const el = document.getElementById(s);
+            if (el) el.classList.remove('active-section');
+            const nb = document.getElementById('nav-' + s);
+            if (nb) nb.classList.remove('active');
+            const mnb = document.getElementById('mob-nav-' + s);
+            if (mnb) mnb.classList.remove('active');
+        });
+        // show target
+        const target = document.getElementById(id);
+        if (target) target.classList.add('active-section');
+        const nb = document.getElementById('nav-' + id);
+        if (nb) nb.classList.add('active');
+        const mnb = document.getElementById('mob-nav-' + id);
+        if (mnb) mnb.classList.add('active');
+        // close mobile nav
+        closeMobileNav();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-</script>
 
+    function toggleMobileNav() {
+        mobileOpen = !mobileOpen;
+        const nav = document.getElementById('mobileNav');
+        const icon = document.getElementById('ham-icon');
+        nav.classList.toggle('open', mobileOpen);
+        icon.className = mobileOpen ? 'bi bi-x-lg' : 'bi bi-list';
+    }
+
+    function closeMobileNav() {
+        mobileOpen = false;
+        document.getElementById('mobileNav').classList.remove('open');
+        document.getElementById('ham-icon').className = 'bi bi-list';
+    }
+
+    function handleFormSubmit() {
+        document.getElementById('formSuccess').style.display = 'block';
+        setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 5000);
+    }
+
+    // Scroll to top button
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('scrollTop');
+        btn.classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // Counter animation
+    function animateCounters() {
+        document.querySelectorAll('.stat-num, .num').forEach(el => {
+            const text = el.textContent;
+            const num = parseInt(text.replace(/\D/g, ''));
+            const suffix = text.replace(/[0-9]/g, '');
+            if (!num) return;
+            let current = 0;
+            const step = Math.ceil(num / 50);
+            const timer = setInterval(() => {
+                current = Math.min(current + step, num);
+                el.textContent = current.toLocaleString('tr-TR') + suffix;
+                if (current >= num) clearInterval(timer);
+            }, 30);
+        });
+    }
+
+    // Run on hero visible
+    const heroObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) { animateCounters(); heroObs.disconnect(); }
+    }, { threshold: 0.3 });
+    const hero = document.querySelector('.hero');
+    if (hero) heroObs.observe(hero);
+</script>
 </body>
 </html>
