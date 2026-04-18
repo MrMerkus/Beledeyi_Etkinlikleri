@@ -1,114 +1,340 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Küçükçekmece Proje Sayfası</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Küçükçekmece Gençlik Merkezi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
-        .navbar { background-color: #0056b3; } /* Küçükçekmece mavisi tonu */
-        .hero-section { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); 
-                        background-size: cover; color: white; padding: 100px 0; text-align: center; }
-        .section-title { border-left: 5px solid #0056b3; padding-left: 15px; margin-bottom: 30px; margin-top: 50px; }
-        footer { background: #343a40; color: white; padding: 30px 0; margin-top: 50px; }
+        :root {
+            --primary-color: #1a4b84; /* Kurumsal Lacivert */
+            --secondary-color: #20c997; /* Turkuaz/Yeşil Vurgu */
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            padding-top: 76px; /* Navbar yüksekliği kadar boşluk */
+        }
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .nav-link {
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        /* Sayfa Bölümleri */
+        .page-section {
+            display: none; /* Varsayılan olarak tüm bölümler gizli */
+            min-height: calc(100vh - 150px);
+            padding: 40px 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .page-section.active-section {
+            display: block; /* Sadece aktif bölüm görünür */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Özel Tasarım Elementleri */
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .principle-item {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .principle-item i {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header-custom {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            border-radius: 12px 12px 0 0 !important;
+            padding: 15px;
+        }
+        .quote-box {
+            background-color: #e9ecef;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        .museum-list {
+            column-count: 2;
+            column-gap: 40px;
+            list-style-type: none;
+            padding: 0;
+        }
+        .museum-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+        @media (max-width: 768px) {
+            .museum-list { column-count: 1; }
+        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Küçükçekmece Proje</a>
+        <a class="navbar-brand" href="#" onclick="showSection('anasayfa')">
+            <i class="bi bi-building"></i> KÜÇÜKÇEKMECE GENÇLİK
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#hakkimizda">Hakkımızda</a></li>
-                <li class="nav-item"><a class="nav-link" href="#hizmetler">Hizmetler</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projeler">Projeler</a></li>
-                <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
+                <li class="nav-item"><a class="nav-link active" id="nav-anasayfa" onclick="showSection('anasayfa')">Ana Sayfa</a></li>
+                <li class="nav-item"><a class="nav-link" id="nav-ilkelerimiz" onclick="showSection('ilkelerimiz')">İlkelerimiz</a></li>
+                <li class="nav-item"><a class="nav-link" id="nav-kurslar" onclick="showSection('kurslar')">Mesleki Kurslar</a></li>
+                <li class="nav-item"><a class="nav-link" id="nav-etkinlikler" onclick="showSection('etkinlikler')">Etkinlikler & Geziler</a></li>
+                <li class="nav-item"><a class="nav-link" id="nav-yarismalar" onclick="showSection('yarismalar')">Yarışmalar</a></li>
+                <li class="nav-item"><a class="nav-link" id="nav-hizmetler" onclick="showSection('hizmetler')">Hizmetlerimiz</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<header class="hero-section">
-    <div class="container">
-        <h1 class="display-4 fw-bold">Küçükçekmece Dijital Platformu</h1>
-        <p class="lead">Geleceğin projelerini GitHub üzerinde inşa ediyoruz.</p>
+<section id="anasayfa" class="page-section active-section container">
+    <div class="row align-items-center h-100 mt-5">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold" style="color: var(--primary-color);">Geleceğini Şekillendir!</h1>
+            <p class="lead mt-3">Küçükçekmece Belediyesi Gençlik Merkezi olarak; eğitim, bilim, sanat ve teknolojiyle dolu bir gençlik için buradayız. Üst menüden sayfalarımız arasında gezinebilirsiniz.</p>
+            <button class="btn btn-primary btn-lg mt-3" style="background-color: var(--secondary-color); border:none;" onclick="showSection('ilkelerimiz')">İlkelerimizi Keşfet <i class="bi bi-arrow-right"></i></button>
+        </div>
+        <div class="col-lg-6 text-center mt-5 mt-lg-0">
+            <i class="bi bi-rocket-takeoff" style="font-size: 15rem; color: var(--primary-color); opacity: 0.8;"></i>
+        </div>
     </div>
-</header>
+</section>
 
-<div class="container my-5">
+<section id="ilkelerimiz" class="page-section container">
+    <div class="text-center">
+        <h2 class="section-title">İlkelerimiz</h2>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+            <div class="principle-item"><i class="bi bi-check2-square"></i> İnsan ve vatandaşlık haklarına saygılı olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Yurt ve dünya sorunlarına duyarlı olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Barış ve eşitlikten yana ve uzlaşmacı olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Çevreyi koruma konusunda duyarlı olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Araştırmacı ve sorgulayıcı olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Sanatsal beğeni ve estetik anlayış sahibi olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Kendisiyle barışık, üretken ve uyumlu bir kişilik sahibi olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Gerçekçi olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Girişimci olmak.</div>
+            <div class="principle-item"><i class="bi bi-check2-square"></i> Çok yönlü olmak.</div>
+        </div>
+    </div>
+</section>
+
+<section id="kurslar" class="page-section container">
+    <div class="text-center">
+        <h2 class="section-title">Mesleki Kurslar ve Atölyeler</h2>
+    </div>
+    <div class="row g-4 mt-2">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header-custom text-center"><i class="bi bi-water fs-2"></i><br>Model Gemi Atölyesi</div>
+                <div class="card-body">
+                    <p>Denizciliği seven gençler model gemi atölyemizde farklı gemi modellerini inşa etme fırsatı bulurlar. Bu atölyede mekanik, tasarım, elektronik ve motor bilgisi alan gençler el becerilerini de geliştirirler.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header-custom text-center"><i class="bi bi-palette fs-2"></i><br>Plastik Makyaj Atölyesi</div>
+                <div class="card-body">
+                    <p>Sanata ilgi duyan gençler için özel olarak düzenlenen bu atölyede katılımcılar temel makyaj tekniklerini öğrenirler. Sinema, dizi ve reklam gibi platformlarda uygulanan farklı makyaj tasarımlarının eğitimini alarak el becerilerini geliştirirler.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header-custom text-center"><i class="bi bi-camera-video fs-2"></i><br>Greenbox Atölyesi</div>
+                <div class="card-body">
+                    <p>Dijital içerik üretimi ve yeşil ekran teknolojisiyle ilgilenenler için tasarlanan bu atölyede gençler kendi dijital projelerini gerçekleştirme imkânı bulurlar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="etkinlikler" class="page-section container">
+    <div class="text-center">
+        <h2 class="section-title">Etkinlikler, Kamplar ve Geziler</h2>
+    </div>
     
-    <section id="hakkimizda">
-        <h2 class="section-title">Hakkımızda</h2>
-        <p>Küçükçekmece Belediyesi'nin vizyonuyla uyumlu, teknoloji odaklı projelerimizi burada sergiliyoruz. Bu sayfa, yerel yönetim süreçlerini dijitalleştirmek amacıyla tasarlanmıştır.</p>
-    </section>
-
-    <hr>
-
-    <section id="hizmetler">
-        <h2 class="section-title">Hizmetler</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">E-Belediye</h5>
-                        <p class="card-text">Tüm işlemlerinizi online platform üzerinden kolayca yönetin.</p>
-                    </div>
+    <div class="row mt-4">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-primary"><i class="bi bi-tree"></i> Gençlik Kampları</h4>
+                    <p>Yıl içerisinde gerçekleştirdiğimiz gençlik kamplarıyla gençleri doğada yaşamla tanıştırıyoruz. Sosyalleşmelerine ve sorumluluk kazanmalarına katkıda bulunan kamplarla hem eğleniyor hem öğreniyorlar.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Gençlik Merkezi</h5>
-                        <p class="card-text">Yazılım ve kodlama eğitimleriyle gençlere destek oluyoruz.</p>
-                    </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-primary"><i class="bi bi-mic"></i> Seminer ve Söyleşiler</h4>
+                    <p>Belli aralıklarla yapılan seminer ve söyleşilerde öğrencilerimizi ve velilerimizi alanında uzman kişilerle buluşturuyoruz. Meslek tanıtımları, rehberlik çalışmaları, teknoloji uygulamaları ve kitap sohbetleri gibi toplantılarla katılımcılarda farkındalık kazandırmayı hedefliyoruz.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Kültür ve Sanat</h5>
-                        <p class="card-text">İlçemizdeki tüm kültürel etkinliklere buradan ulaşabilirsiniz.</p>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="card-body">
+            <h4 class="card-title text-primary text-center"><i class="bi bi-bus-front"></i> Bilim Kültür Gezileri</h4>
+            <p class="text-center mb-4">Bilim ve kültür gezileriyle gençlerimiz sosyalleşme imkânı bularak tarihi ve farklı kültürleri rehber eşliğinde tanımış olur. Gelecekteki kariyer yollarını şekillendirirken gençlerimizin vizyonlarını genişletmek, farklı sektörlerdeki çalışmaları tanımak ve kişisel gelişimlerine katkıda bulunmak asıl amaçlarımızdandır.</p>
+            <div class="quote-box text-center mb-4">
+                "Gezgin bir yere varmak için değil, keşfetmek için seyahat eder." - Cervantes
+            </div>
+            
+            <h5 class="fw-bold text-center mb-3">Ziyaret Edilen Başlıca Lokasyonlar</h5>
+            <ul class="museum-list px-4">
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Cumhuriyet Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Kemal Sunal Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Gazhane</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Doğa Bilim Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Dijital Sanatlar Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Robot Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Havacılık Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Atatürk Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Bilim ve Teknoloji Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Aşiyan Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Baruthane</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> İklim Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Karikatür Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> İstanbul Sanat Müzesi</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> Yerebatan Sarnıcı</li>
+                <li><i class="bi bi-geo-alt-fill text-danger"></i> İstanbul Tasarım Müzesi</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="yarismalar" class="page-section container">
+    <div class="text-center">
+        <h2 class="section-title">Ulusal ve Uluslararası Yarışmalar</h2>
+    </div>
+    <div class="row align-items-center mt-4">
+        <div class="col-lg-6">
+            <p class="lead">Yıl içerisinde takibini yaptığımız ve hazırlandığımız yarışmalara gençlerimizle katılarak onları çeşitli platformla tanıştırıyor ve geleceklerini şekillendiriyoruz.</p>
+            <ul class="list-group mt-4 shadow-sm">
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-robot fs-4 text-primary me-3"></i> Robot Turnuvaları</li>
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-cpu fs-4 text-primary me-3"></i> Teknofest Projeleri</li>
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-lightbulb fs-4 text-primary me-3"></i> Tübitak Projeleri</li>
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-pen fs-4 text-primary me-3"></i> Şiir Yarışmaları</li>
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-star fs-4 text-primary me-3"></i> İnovasyon Yarışmaları</li>
+                <li class="list-group-item d-flex align-items-center"><i class="bi bi-puzzle fs-4 text-primary me-3"></i> Akıl ve Zekâ Oyunları Yarışmaları</li>
+            </ul>
+        </div>
+        <div class="col-lg-6 text-center mt-5 mt-lg-0">
+            <i class="bi bi-trophy" style="font-size: 12rem; color: #ffc107;"></i>
+        </div>
+    </div>
+</section>
+
+<section id="hizmetler" class="page-section container">
+    <div class="text-center">
+        <h2 class="section-title">Hizmetlerimiz</h2>
+    </div>
+    <div class="row g-4 mt-2">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header-custom text-center"><i class="bi bi-person-lines-fill fs-2"></i><br>Rehberlik Hizmetleri</div>
+                <div class="card-body">
+                    <p>Rehberlik birimimizde gençlere bireysel ve eğitsel destek, mesleki danışmanlık ve aile rehberliği hizmetleri sunulmaktadır. Üniversiteye hazırlık sürecinde olan üyelerimize ders çalışma programı ve takibi, öğrencinin gelişimi ve motivasyon desteğiyle tercih danışmanlığı hizmeti verilmektedir.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header-custom text-center" style="background-color: #dc3545;"><i class="bi bi-book fs-2"></i><br>Çok Amaçlı Ders Çalışma Salonu</div>
+                <div class="card-body">
+                    <p>Gençlik Merkezi'nin Çok Amaçlı Salonu ücretsiz Wi-Fi hizmeti, serbest ders çalışma ve etüt saatleri imkânı sunar. Gençler sınavlara hazırlık sürecinde istedikleri zaman güvenli ve rahat ders çalışma alanlarından faydalanır.</p>
+                    <div class="quote-box">
+                        "Merak, bilginin tohumudur." - F. Bacon
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <hr>
-
-    <section id="projeler">
-        <h2 class="section-title">Öne Çıkan Projeler</h2>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">🚀 Akıllı Şehir Altyapısı</li>
-            <li class="list-group-item">🌳 Yeşil Alanların Dijital Haritası</li>
-            <li class="list-group-item">📱 Mobil Sosyal Yardım Uygulaması</li>
-        </ul>
-    </section>
-
-    <hr>
-
-    <section id="iletisim">
-        <h2 class="section-title">İletişim</h2>
-        <p>Bize her zaman ulaşabilirsiniz:</p>
-        <p><strong>E-posta:</strong> bilgi@kucukcekmece.istanbul</p>
-        <p><strong>Adres:</strong> Küçükçekmece Belediye Başkanlığı, İstanbul</p>
-    </section>
-
-</div>
-
-<footer>
-    <div class="container text-center">
-        <p>&copy; 2026 Küçükçekmece Proje Sayfası. GitHub Pages ile güçlendirilmiştir.</p>
     </div>
+</section>
+
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <p class="mb-0">&copy; 2026 Küçükçekmece Belediyesi Gençlik Merkezi Dijital Platformu.</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function showSection(sectionId) {
+        // Tüm bölümleri gizle
+        const sections = document.querySelectorAll('.page-section');
+        sections.forEach(sec => sec.classList.remove('active-section'));
+        
+        // Tüm menü linklerinden aktifliği kaldır
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // İstenen bölümü göster ve ilgili menü linkini aktif yap
+        document.getElementById(sectionId).classList.add('active-section');
+        document.getElementById('nav-' + sectionId).classList.add('active');
+        
+        // Mobilde menüyü tıklamadan sonra kapat
+        const navbarCollapse = document.getElementById('navbarNav');
+        if(navbarCollapse.classList.contains('show')) {
+            var bsCollapse = new bootstrap.Collapse(navbarCollapse, {toggle: false});
+            bsCollapse.hide();
+        }
+        
+        // Sayfanın en üstüne kaydır
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
 </body>
 </html>
